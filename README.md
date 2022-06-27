@@ -1,2 +1,3 @@
-# react-from-zero-to-hero
+# React-From-Zero-To-Hero-Part-1
+
 MERN Learning Path
