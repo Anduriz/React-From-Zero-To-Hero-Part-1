@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "comment": "Para poder estar escuchando los cambios y se realicen las pruebas = jest --watchAll",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
@@ -13,9 +15,15 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@types/jest": "^27.4.1",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
+    "babel-jest": "^28.1.2",
+    "comment": "Installed @types/jest",
+    "jest": "^28.1.2",
     "vite": "^2.9.9"
   }
 }

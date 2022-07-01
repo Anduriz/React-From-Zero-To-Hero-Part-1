@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom/client";
 import { CounterApp } from './Components/CounterApp';
-import { FirstApp } from './FirstApp';
+import { FirstApp } from './Components/FirstApp';
 
 // Aplicar estilos CSS globales
 import './styles.css';
