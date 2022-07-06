@@ -1,21 +1,24 @@
-// Operador condicional ternario
+// Write a JavaScript program to get the sum of a given array, after mapping each element to a value using the provided function.
 
-const activo = true;
+// Use Array.prototype.map() to map each element to the value returned by fn.
+// Use Array.prototype.reduce() to add each value to an accumulator, initialized with a value of 0.
 
-// let mensaje = '';
+// Note: Write code on an initialized git repository
 
-// if( activo ) {
-//     mensaje = 'Activo';
-// } else {
-//     mensaje = 'Inactivo'
-// }
+const numbers = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 
-// const mensaje = ( activo === true ) ? 'Activo' : 'Inactivo';
+const calculateSum = () => {
+    let res = 0;
+    numbers.map( item => {
+        // console.log(`Resultado ${res} + ${item}`);
+        res = res + item;
+        // console.log(`Resultado: ${res}` );
+    });
+    return res;
+}
 
-// const mensaje = ( activo ) ? 'Activo' : 'Inactivo';
+// Map
+console.log("Resultado:" + calculateSum());
 
-// const mensaje = activo === true && 'Activo';
-
-const mensaje = activo && 'Activo';
-
-console.log(mensaje);
+// Reduce
+console.log("Resultado:" + numbers.reduce((res, item) => res + item));
