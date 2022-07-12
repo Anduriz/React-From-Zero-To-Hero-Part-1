@@ -1,5 +1,10 @@
+//Importaciones de react
 import { useEffect, useState } from "react";
+//Importaciones de terceros
+
+//Nuestro codigo
 import { getGifs } from "../helpers/getGifs";
+import { GifItem } from "./GifItem";
 
 export default function GifGrid({ category }) {
 
@@ -19,17 +24,16 @@ export default function GifGrid({ category }) {
   //       .then( newImages => setImages(newImages))
   // },[ ])
 
-
   return (
     <>
-      <h3>{category}</h3>
-        <ol>
+      <h3>{ category }</h3>
+        <div className="card-grid">
           {/* Images.map */}
-          {
-          (images || []).map(image => (
-            <li>{image.title}</li>
-          ))}
-        </ol>
+          { images.map( image => ( <GifItem 
+            key={image.id} 
+            { ...image }
+            /> )) }
+        </div>
     </>
   );
 }
