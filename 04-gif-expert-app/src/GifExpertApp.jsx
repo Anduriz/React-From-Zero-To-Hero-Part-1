@@ -1,6 +1,11 @@
 import { useState } from "react";
-import AddCategory from "./components/AddCategory";
-import GifGrid from "./components/GifGrid";
+
+// Importacion por medio de index
+import { AddCategory, GifGrid } from './components';
+
+// Importacion antes de index
+// import AddCategory from "./components/AddCategory";
+// import GifGrid from "./components/GifGrid";
 
 export const GifExpertApp = () => {
   const [categories, setCategories] = useState(["Nintendo"]);
