@@ -1,48 +1,21 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useForm } from "../hooks/useForm";
 
 export const FormWithCustomHook = () => {
-  const [formState, setFormState] = useState({
-    username: "",
-    email: "",
-    password: "",
+
+  const { formState, onInputChange,  onResetForm, username, email, password } = useForm ({
+    username: '',
+    email: '',
+    password: '',
   });
 
-  const { username, email, password } = formState;
-
-  const onInputChange = ({ target }) => {
-    const { name, value } = target;
-    // console.log({name, value});
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  //   useEffect(() => {
-  //     console.log("useEffect called");
-  //   }, []);
-
-  //   useEffect(() => {
-  //     console.log("formState changed");
-  //   }, [formState]);
-
-  //   useEffect(() => {
-  //     console.log("email changed");
-  //   }, [email]);
-
+  // const { username, email, password } = formState;
+ 
   return (
     <>
       <h1>Formulario con custom Hook</h1>
       <br />
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Username"
-        name="username"
-        value={username}
-        onChange={onInputChange}
-      />
 
       <input
         type="email"
@@ -54,6 +27,15 @@ export const FormWithCustomHook = () => {
       />
 
       <input
+        type="text"
+        className="form-control mt-2"
+        placeholder="Username"
+        name="username"
+        value={username}
+        onChange={onInputChange}
+      />
+
+      <input
         type="password"
         className="form-control mt-2"
         placeholder="Contrasena"
@@ -61,6 +43,9 @@ export const FormWithCustomHook = () => {
         value={password}
         onChange={onInputChange}
       />
+
+    <button onClick={ onResetForm } className='btn btn-warning mt-2'> Reset </button>
+
     </>
   );
 };
