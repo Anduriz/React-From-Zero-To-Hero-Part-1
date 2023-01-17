@@ -1,23 +1,30 @@
 import { useEffect, useMemo, useState } from 'react';
 
-export const useForm = ( initialForm = {}, formValidations = {} ) => {
+export const useForm = ( initialForm = {}, formValidations = {}) => {
   
     const [ formState, setFormState ] = useState( initialForm );
-    const [formValidation, setFormValidation] = useState({});
+    const [ formValidation, setFormValidation ] = useState({});
 
     useEffect(() => {
         createValidators();
-    }, [formState])
+    }, [ formState ])
+
+    // Si el formulario inicial cambia este se reiniciara
+    useEffect(() => {
+        setFormState( initialForm );
+    }, [ initialForm ])
+    
     
     const isFormValid = useMemo( () => {
-        
-        for (const formValue of Object.keys(formValidation)) {
-            if(formValidation[formValue] !== null) return false;
+
+        for (const formValue of Object.keys( formValidation )) {
+            if ( formValidation[formValue] !== null ) return false;
         }
 
         return true;
-    }, [formValidation] );
+    }, [ formValidation ])
 
+    // Si el formulario cambia, cambia los valores del campo
     const onInputChange = ({ target }) => {
         const { name, value } = target;
         setFormState({
@@ -31,15 +38,16 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
     }
 
     const createValidators = () => {
+        
         const formCheckedValues = {};
+        
+        for (const formField of Object.keys( formValidations )) {
+            const [ fn, errorMessage ] = formValidations[formField];
 
-        for (const formField of Object.keys(formValidations)) {
-            const [ fn, errorMesage ] = formValidations[formField];
-            formCheckedValues[`${formField}Valid`] = fn(formState[formField]) ? null : errorMesage ;
+            formCheckedValues[`${ formField }Valid`] = fn( formState[formField] ) ? null : errorMessage;
         }
 
-        setFormValidation(formCheckedValues);
-
+        setFormValidation( formCheckedValues );
     }
 
     return {
@@ -47,6 +55,7 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         formState,
         onInputChange,
         onResetForm,
+
         ...formValidation,
         isFormValid
     }
